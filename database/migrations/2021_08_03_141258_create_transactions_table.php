@@ -15,6 +15,10 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id')->unique();
+            $table->integer('product_id');
+            $table->integer('quantity');
+            $table->enum('order_type', ['COD', 'Paid','Exchange']);
             $table->timestamps();
         });
     }
