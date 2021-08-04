@@ -15,6 +15,9 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('product_id');
+            $table->string('name')->default('Anonymus');
+            $table->longText('review');
             $table->timestamps();
         });
     }

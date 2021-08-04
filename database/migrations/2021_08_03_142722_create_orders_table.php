@@ -15,6 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_id', 100)->unique();
+            $table->bigInteger('userId');
+            $table->bigInteger('productId');
+            $table->string('size',15);
+            $table->integer('quantity');
+            $table->timestamp('order_date')->default(date('Y-m-d H:i:s'));
+            $table->enum('payment_method', ['EMI', 'Paid','COD','Exchange']);
+            $table->timyInteger('order_status');
             $table->timestamps();
         });
     }

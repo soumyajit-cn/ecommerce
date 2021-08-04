@@ -15,6 +15,9 @@ class CreateUserlogsTable extends Migration
     {
         Schema::create('userlogs', function (Blueprint $table) {
             $table->id();
+            $table->string('user_email',100);
+            $table->binary('userip');
+            $table->timestamp('loginTime')->default(date('Y-m-d H:i:s'));
             $table->timestamps();
         });
     }
