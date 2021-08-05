@@ -17,8 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_name');
             $table->string('product_company');
-            $table->string('category',100);
-            $table->string('sub_category',100);
+            // $table->string('category',100);
+            // $table->string('sub_category',100);
+            $table->json('attribute');
             $table->longtext('product_description');
             $table->integer('product_price');
             $table->integer('product_price_before_discount');
