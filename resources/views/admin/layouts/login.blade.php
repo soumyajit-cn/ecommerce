@@ -46,8 +46,8 @@
     <script src="{{ asset('admin/vendor/slick/slick.min.js') }}">
     </script>
     <script src="{{ asset('admin/vendor/wow/wow.min.js') }}"></script>
-    <script src="{{ asset('vendor/animsition/animsition.min.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+    <script src="{{ asset('admin/vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ asset('admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
     </script>
     <script src="{{ asset('admin/vendor/counter-up/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('admin/vendor/counter-up/jquery.counterup.min.js') }}">
