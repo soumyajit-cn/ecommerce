@@ -18,6 +18,7 @@ class CreateOrderProductTable extends Migration
             $table->string('product_id');
             $table->string('order_id');
             $table->integer('quantity');
+            $table->json('variant');
             $table->timestamps();
         });
     }
