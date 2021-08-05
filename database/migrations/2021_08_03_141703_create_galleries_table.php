@@ -20,7 +20,7 @@ class CreateGalleriesTable extends Migration
             $table->string('frontimage');
             $table->string('backimage');
             $table->string('optional_image_1')->nullabale();
-            $table->string('optional_image_1')->nullabale();
+            $table->string('optional_image_2')->nullabale();
             $table->timestamps();
         });
     }

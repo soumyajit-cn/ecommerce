@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->json('attributes');
             $table->timestamp('order_date')->default(date('Y-m-d H:i:s'));
             $table->enum('payment_method', ['EMI', 'Paid','COD']);
-            $table->timyInteger('order_status');
+            $table->tinyInteger('order_status');
             $table->timestamps();
         });
     }

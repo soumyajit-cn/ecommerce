@@ -12,37 +12,41 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="" method="post">
+                            <form action="" method="post" action="{{ route('login') }}">
+                                @csrf
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <input class="au-input au-input--full" type="email" name="email" "@error('email') is-invalid @enderror" placeholder="Email"  value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 </div>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password" "@error('password') is-invalid @enderror" required autocomplete="current-password">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="remember">Remember Me
                                     </label>
-                                    <label>
-                                        <a href="#">Forgotten Password?</a>
-                                    </label>
+                                    @if (Route::has('password.request'))
+                                        <label>
+                                            <a href="{{ route('password.request') }}">Forgotten Password?</a>
+                                        </label>
+                                    @endif
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">sign in</button>
-                                <div class="social-login-content">
-                                    <div class="social-button">
-                                        <button class="au-btn au-btn--block au-btn--blue m-b-20">sign in with facebook</button>
-                                        <button class="au-btn au-btn--block au-btn--blue2">sign in with twitter</button>
-                                    </div>
-                                </div>
                             </form>
-                            <div class="register-link">
-                                <p>
-                                    Don't you have account?
-                                    <a href="#">Sign Up Here</a>
-                                </p>
-                            </div>
+                            @if (Route::has('register'))
+                                <div class="register-link">
+                                    <p>
+                                        Don't you have account?
+                                        <a href="{{ route('register') }}">Sign Up Here</a>
+                                    </p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
