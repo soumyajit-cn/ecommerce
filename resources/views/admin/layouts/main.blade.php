@@ -8,9 +8,9 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <!-- Title Page-->
-    <title>Dashboard</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fontfaces CSS-->
     <link href="{{ asset('admin/css/font-face.css') }}" rel="stylesheet" media="all">
@@ -183,8 +183,16 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="">
+                                <i class="fas fa-chart-bar"></i>Category Management </a>
+                        </li>
+                        <li>
                             <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Charts</a>
+                                <i class="fas fa-chart-bar"></i>Sub Category Management </a>
+                        </li>
+                        <li>
+                            <a href="chart.html">
+                                <i class="fas fa-chart-bar"></i>Product Management </a>
                         </li>
                         <li>
                             <a href="table.html">
@@ -441,7 +449,14 @@
                 </div>
             </header>
             <!-- HEADER DESKTOP-->
-            @yield('content')
+            <!-- MAIN CONTENT-->
+             <div class="main-content">
+                 <div class="section__content section__content--p30">
+                     <div class="container-fluid">
+                        @yield('content')
+                     </div>
+                 </div>
+             </div>
 
             <!-- END PAGE CONTAINER-->
         </div>

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,5 @@ Route::get('/', function () {
 });
 //Route::get("/login", [LoginController::class, 'login'])->name('login');
 Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::resource('products', ProductController::class)->middleware('auth');
+Route::resource('categories', CategoryController::class)->middleware('auth');
