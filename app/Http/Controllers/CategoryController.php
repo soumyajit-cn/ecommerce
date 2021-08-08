@@ -15,7 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('parent_id','=','0')->latest()->paginate(5);
+        //$categories = Category::latest()->paginate(5);
+        $categories = Category::with('parent')->whereHas('parent', function($q){$q->where('parent_id','=','id');})
+        ->orWhere('parent_id','=','0')
+        ->get();
+        //dd(json_decode(json_encode($categories), true));
         return view('admin.category.list', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

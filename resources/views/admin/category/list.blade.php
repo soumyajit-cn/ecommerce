@@ -57,7 +57,8 @@
                             </label>
                         </td> --}}
 
-                        <td>{{$category->parent_id=== 0 ? $category->category_name : ''}}</td>
+                        {{-- <td>{{$category->parent_id === 0 ? $category->category_name : ''}}</td> --}}
+                        <td>{{$category->parent!= null ? $category->parent->category_name : $category->category_name}}</td>
                         <td>
                             <span class="block-email">{{$category->parent_id=== 0 ? '-' : $category->category_name }}</span>
                         </td>
