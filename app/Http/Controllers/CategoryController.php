@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        dd(Category::with('products')->get());
+        //dd(Category::with('products')->get());
         // \Log::debug(\App\Models\Category::limit(1)->toRawSql());
         //$categories = Category::latest()->paginate(5);
        $categories = Category::with('parent')->whereHas('parent', function($q){$q->orWhere('parent_id','=','0');})
