@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
+//use Log;
 
 class CategoryController extends Controller
 {
@@ -16,11 +17,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        dd(Category::with('products')->get());
+        // \Log::debug(\App\Models\Category::limit(1)->toRawSql());
         //$categories = Category::latest()->paginate(5);
-        $categories = Category::with('parent')->whereHas('parent', function($q){$q->where('parent_id','=','id');})
-        ->orWhere('parent_id','=','0')
+       $categories = Category::with('parent')->whereHas('parent', function($q){$q->orWhere('parent_id','=','0');})
         ->get();
-        //dd(json_decode(json_encode($categories), true));
+        //dd($categories);
         return view('admin.category.list', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }

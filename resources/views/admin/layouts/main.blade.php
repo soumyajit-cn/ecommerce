@@ -164,10 +164,10 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-                            <a class="js-arrow" href="#">
+                        <li class="active">
+                            <a class="js-arrow" href="{{route('dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            {{-- <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
                                     <a href="index.html">Dashboard 1</a>
                                 </li>
@@ -180,21 +180,20 @@
                                 <li>
                                     <a href="index4.html">Dashboard 4</a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </li>
                         <li>
-                            <a href="">
-                                <i class="fas fa-chart-bar"></i>Category Management </a>
+                            <a href="{{route('categories.index')}}"><i class="fas fa-chart-bar"></i>Category Management </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="chart.html">
                                 <i class="fas fa-chart-bar"></i>Sub Category Management </a>
-                        </li>
+                        </li> --}}
                         <li>
-                            <a href="chart.html">
+                            <a href="{{route('products.index')}}">
                                 <i class="fas fa-chart-bar"></i>Product Management </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
@@ -263,7 +262,7 @@
                                     <a href="typo.html">Typography</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
             </div>

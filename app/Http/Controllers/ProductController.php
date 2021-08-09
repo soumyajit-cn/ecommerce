@@ -12,9 +12,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(){
+        dd(json_decode(json_encode(Product::with('categories')->get())));
         $products = Product::latest()->paginate(5);
-        return view('product.list', compact('products'))
+        return view('admin.product.list', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
