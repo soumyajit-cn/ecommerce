@@ -3,6 +3,11 @@
 <div class="row">
     <div class="col-md-12">
         <!-- DATA TABLE -->
+        @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p></p>
+            </div>
+        @endif
         <h3 class="title-5 m-b-35">Category table</h3>
         <div class="table-data__tool">
             {{-- <div class="table-data__tool-left">
@@ -70,12 +75,17 @@
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
                                 </button> --}}
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <a class="item" href="{{route('categories.edit',$category->id)}}" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
+                                </a>
+                                <form action="{{route('categories.destroy',$category->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                </form>
+
                                 {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
                                     <i class="zmdi zmdi-more"></i>
                                 </button> --}}
@@ -88,6 +98,7 @@
                     @endforeach
                 </tbody>
             </table>
+
         </div>
         <!-- END DATA TABLE -->
     </div>

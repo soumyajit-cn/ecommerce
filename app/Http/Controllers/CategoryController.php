@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -31,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id','=','0')->select('id','category_name')->get();
+        $categories = Category::select('id','category_name')->get();
         return view('admin.category.add', compact('categories'));
     }
 
@@ -72,9 +73,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $categories= Category::select('id','category_name')->get();
+        $categorydata= Category::find($id);
+        //dd($categorydata);
+        return view('admin.category.edit',compact('categories','categorydata'));
     }
 
     /**
@@ -84,9 +88,16 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request,Category $category)
     {
-        //
+        $validated = $request->validated();
+        //$categorydata= Category::find($request->id);
+        $category->parent_id= $request->parent_category;
+        $category->category_name= $request->category_name;
+        $category->category_description = $request->category_desc;
+        $category->updated_at = date('Y-m-d H:i:s');
+        $category->update();
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -97,6 +108,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index')
+            ->with('success', 'Category deleted successfully');
     }
 }
