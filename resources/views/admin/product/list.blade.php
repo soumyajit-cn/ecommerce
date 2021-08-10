@@ -57,9 +57,13 @@
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                 </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                    <i class="zmdi zmdi-more"></i>
-                                </button>
+                                <form action="{{route('products.destroy',$product->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                        <i class="zmdi zmdi-more"></i>
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>

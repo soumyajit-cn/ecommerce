@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
 {
@@ -63,7 +64,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories= Category::get();
+        return view('admin.product.edit',compact('categories'));
     }
 
     /**
@@ -73,9 +75,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $validated= $request->validated();
     }
 
     /**
@@ -86,6 +88,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect()->route('categories.index')->with('success', 'Product deleted successfully');
     }
 }
