@@ -282,7 +282,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                    <div class="au-card-title" style="background-image:{{asset('images/bg-title-01.jpg')}}">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
                                             <i class="zmdi zmdi-account-calendar"></i>26 April, 2018</h3>
@@ -352,7 +352,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
-                                    <div class="au-card-title" style="background-image:url('images/bg-title-02.jpg');">
+                                    <div class="au-card-title" style="background-image:{{asset('images/bg-title-02.jpg')}}">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
                                             <i class="zmdi zmdi-comment-text"></i>New Messages</h3>
@@ -375,7 +375,7 @@
                                                         <div class="au-message__item-text">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
-                                                                    <img src="{{asset('images/icon/avatar-02.jpg')}}" alt="John Smith">
+                                                                    <img src="{{asset('admin/images/icon/avatar-02.jpg')}}" alt="Admin">
                                                                 </div>
                                                             </div>
                                                             <div class="text">

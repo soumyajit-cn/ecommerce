@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,8 @@ class ProductController extends Controller
      */
 
     public function index(){
-        //dd(json_decode(json_encode(Product::with('categories')->get())));
-        $products = Product::latest()->paginate(5);
+        $products = Product::with('categories')->latest()->paginate(5);
+        //dd(json_decode(json_encode($products)));
         return view('admin.product.list', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -27,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.add');
+        $categories= Category::get();
+        return view('admin.product.add',compact('categories'));
     }
 
     /**
@@ -36,9 +39,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $validated= $request->validated();
     }
 
     /**

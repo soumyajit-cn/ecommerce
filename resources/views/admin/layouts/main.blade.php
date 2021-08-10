@@ -14,6 +14,7 @@
 
     <!-- Fontfaces CSS-->
     <link href="{{ asset('admin/css/font-face.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('admin/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('admin/vendor/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('admin/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
@@ -283,7 +284,7 @@
                                 </button>
                             </form>
                             <div class="header-button">
-                                <div class="noti-wrap">
+                                {{-- <div class="noti-wrap">
                                     <div class="noti__item js-item-menu">
                                         <i class="zmdi zmdi-comment-more"></i>
                                         <span class="quantity">1</span>
@@ -394,27 +395,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="John Doe" />
+                                            <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="Admin" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">john doe</a>
+                                            <a class="js-acc-btn" href="{{route('dashboard')}}">{{Auth::user()->name}}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="John Doe" />
+                                                        <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="Admin" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">john doe</a>
+                                                        <a href="#">{{Auth::user()->name}}</a>
                                                     </h5>
-                                                    <span class="email">johndoe@example.com</span>
+                                                    <span class="email">{{Auth::user()->email}}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">

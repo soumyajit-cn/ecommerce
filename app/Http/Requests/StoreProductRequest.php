@@ -23,7 +23,7 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()    {
         return [
-            'parent_category'=> 'required|integer|',
+            'parent_category'=> 'required|integer|exists:categories,id',
             'category_name' => 'required|max:255',
             'category_desc' => 'required|string',
         ];
@@ -31,6 +31,7 @@ class StoreProductRequest extends FormRequest
     public function messages(){
         return [
             'parent_category.required' => 'Please Select a Category or Select Parent if its a Category itself',
+            'parent_category.exists' => 'Category Does not exist',
             'category_name.required' => 'Please enter a Category Name',
             'category_desc.required' => 'Please Provide a Description',
         ];

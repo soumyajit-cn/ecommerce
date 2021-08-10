@@ -16,31 +16,41 @@
                 <thead>
                     <tr>
                         <th>name</th>
-                        <th>email</th>
-                        <th>description</th>
-                        <th>date</th>
+                        <th>company</th>
+                        <th>category</th>
+                        <th>color</th>
+                        <th>variants</th>
                         <th>status</th>
                         <th>price</th>
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($products as $product)
                     <tr class="tr-shadow">
-                        <td>Lori Lynch</td>
-                        <td>
-                            <span class="block-email">lori@example.com</span>
+                        <td><span class="block-email">{{$product->product_name}}</span></td>
+                        <td class="text-wrap" >
+                            <span>{{$product->product_company}}</span>
                         </td>
-                        <td class="desc">Samsung S8 Black</td>
-                        <td>2018-09-27 02:12</td>
-                        <td>
-                            <span class="status--process">Processed</span>
+                        {{-- <td class="desc">{{$product->product_company}}</td> --}}
+                        <td><ul class="list-unstyled">
+                                @foreach ($product->categories as $category)
+                                    <li class="text-capitalize">{{$category->category_name}}</li>
+                                @endforeach
+                            </ul>
                         </td>
-                        <td>$679.00</td>
+                        <td>
+                            <span class="status--process"></span>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td class="code"><s>{{$product->product_price_before_discount}}</s>&nbsp; {{$product->product_price}} </td>
+
                         <td>
                             <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                {{-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
                                     <i class="zmdi zmdi-mail-send"></i>
-                                </button>
+                                </button> --}}
                                 <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                     <i class="zmdi zmdi-edit"></i>
                                 </button>
@@ -54,6 +64,8 @@
                         </td>
                     </tr>
                     <tr class="spacer"></tr>
+                    @endforeach
+
 
                 </tbody>
             </table>
