@@ -17,6 +17,16 @@
         console.log(error);
     }
 
+    try{
+        $("input[type='number']").keypress(function (e) { //disable alphabetic input on number field
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+               return false;
+            }
+        });
+    }catch{
+        console.log(error);
+    }
+
 
   try {
     //WidgetChart 1

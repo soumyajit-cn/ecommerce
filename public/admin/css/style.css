@@ -12,3 +12,9 @@
     border: 1px solid lightgrey;
     padding: 10px;
   }
+  .text-faded {
+    color: #a6afb7;
+   }
+   input[type=number] {
+    -moz-appearance: textfield;
+   }

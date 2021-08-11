@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories= Category::get();
+        $categories= Category::select('id','category_name')->get();
         return view('admin.product.add',compact('categories'));
     }
 
@@ -62,7 +62,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
         $categories= Category::get();
         return view('admin.product.edit',compact('categories'));

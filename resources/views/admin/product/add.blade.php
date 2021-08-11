@@ -3,70 +3,112 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
-            <div class="card-header">Add category</div>
+            <div class="card-header">Add Product</div>
             <div class="card-body card-block">
                 <form action="{{route('products.store')}}" method="post" class="">
                     @csrf
                     <div class="form-row">
-                        <div class="col form-group">
+                        <div class="col-4 form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">Type</div>
-                                <select name="parent_category" id="select" class="form-control">
+                                <div class="input-group-addon">Category</div>
+                                <select name="category" id="select" class="form-control @error('category') is-invalid @enderror" >
                                     <option value="">Select Category</option>
-                                    {{-- an<option value="0" {{ old('parent_category') === 0 ? 'selected' : '' }}>Parent</option> --}}
                                     @foreach ($categories as $category)
-                                        <option value="{{$category->id}}" {{ old('parent_category') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
+                                        <option value="{{$category->id}}" {{ old('category') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                                 <div class="input-group-addon">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-list-alt"></i>
                                 </div>
                             </div>
-                            @error('parent_category')
+                            @error('category')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class=" col-4 form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Name</div>
+                                <input type="text" name="product_name" value="{{ old('product_name')}}" class="form-control @error('product_name') is-invalid @enderror">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                            </div>
+                            @error('product_name')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class=" col-4 form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Company</div>
+                                <input type="text" name="product_company" value="{{ old('product_company')}}" class="form-control @error('product_company') is-invalid @enderror">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-industry"></i>
+                                </div>
+                            </div>
+                            @error('product_company')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class=" col form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Main Price</div>
+                                <input type="number" value="{{ old('product_price_before_discount')}}" name="product_price_before_discount" class="form-control @error('product_price_before_discount') is-invalid @enderror">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-inr"></i>
+                                </div>
+                            </div>
+                            @error('product_price_before_discount')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
                         <div class=" col form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">Name</div>
-                                <input type="text" name="category_name" class="form-control">
+                                <div class="input-group-addon">Discounted Price</div>
+                                <input type="number" name="product_price" value="{{ old('product_price')}}"  class="form-control @error('product_price') is-invalid @enderror">
                                 <div class="input-group-addon">
-                                    <i class="fa fa-envelope"></i>
+                                    <i class="fa fa-inr"></i>
                                 </div>
                             </div>
-                            @error('category_name')
+                            @error('product_price')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class=" col form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">Order Limit</div>
+                                <input type="number" name="order_limit" value="{{ old('product_price')}}"  class="form-control @error('order_limit') is-invalid @enderror">
+                                <div class="input-group-addon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                            </div>
+                            @error('order_limit')
                                 <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
                     </div>
-
-                    <div class="form-group">
+                    <div class=" form-group">
+                        {{-- <span class="text-center text-info small"></span> --}}
                         <div class="input-group">
-                            <div class="input-group-addon">Attributes</div>
-                            <select name="parent_category" id="select" class="form-control">
-                                <option value="">Select Category</option>
-                                {{-- an<option value="0" {{ old('parent_category') === 0 ? 'selected' : '' }}>Parent</option> --}}
-                                @foreach ($categories as $category)
-                                    <option value="{{$category->id}}" {{ old('parent_category') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
-                                @endforeach
-                            </select>
+                            <div class="input-group-addon">Keywords</div>
+                            <input type="text" name="Keywords" value="{{ old('Keywords')}}"  class="form-control @error('Keywords') is-invalid @enderror" placeholder="Please use ,(Comma) as keywords separator">
                             <div class="input-group-addon">
-                                <i class="fa fa-user"></i>
+                                <i class="fa fa-key"></i>
                             </div>
                         </div>
-                        @error('parent_category')
+                        @error('Keywords')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
-
                     <div class="form-group">
                         <div class="input-group">
-                            <div class="col col-md-2">
+                            <div class="col col-md-2 my-auto">
                                 <label for="textarea-input" class=" form-control-label text-center">Description</label>
                             </div>
                             <div class="col-12 col-md-10">
-                                <textarea name="category_desc" id="textarea-input" rows="5" placeholder="Content..." class="form-control">{{old('category_desc')}}</textarea>
-                                @error('category_desc')
+                                <textarea name="product_description" id="textarea-input" rows="3" placeholder="Content..." class="form-control @error('product_description') is-invalid @enderror">{{ old('product_description')}}</textarea>
+                                @error('product_description')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
@@ -77,19 +119,35 @@
                         <fieldset class="the-fieldset rounded">
                             <legend class="the-legend badge badge-secondary px-2 text-uppercase">Mandatory Images</legend>
                             <div class="d-flex">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label>Front</label>
                                     <div class="custom-file mb-3 ">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input @error('frontimage') is-invalid @enderror" id="customFile" name="frontimage">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
+                                    @error('frontimage')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label>Back</label>
                                     <div class="form-group custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input @error('backimage') is-invalid @enderror" id="customFile" name="backimage">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
+                                    @error('backimage')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label>Thumbnail</label>
+                                    <div class="form-group custom-file mb-3">
+                                        <input type="file" class="custom-file-input @error('thumbnail') is-invalid @enderror" id="customFile" name="thumbnail">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                    </div>
+                                    @error('thumbnail')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
 
                             </div>
@@ -102,23 +160,32 @@
                                 <div class="col-12 col-md-4">
                                     <label>Optional 1</label>
                                     <div class="custom-file mb-3 ">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input  @error('optional_image_1') is-invalid @enderror" id="customFile" name="optional_image_1">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
+                                    @error('optional_image_1')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label>Optional 2</label>
                                     <div class="form-group custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input @error('optional_image_2') is-invalid @enderror" id="customFile" name="optional_image_2">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
+                                    @error('optional_image_2')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label>Optional 3</label>
                                     <div class="form-group custom-file mb-3">
-                                        <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                        <input type="file" class="custom-file-input @error('optional_image_3') is-invalid @enderror" id="customFile" name="optional_image_3">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
+                                    @error('optional_image_3')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
 
                             </div>
