@@ -1,6 +1,9 @@
 @extends('admin.layouts.main')
 @section('content')
 <div class="row">
+    @if (Session::has('success'))
+        <div class= "alert alert-block alert-success">{{Session::get('success')}} </div>
+    @endif
     <div class="col-md-12">
         <!-- DATA TABLE -->
         <h3 class="title-5 m-b-35">product table</h3>
