@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">Add Product</div>
             <div class="card-body card-block">
-                <form action="{{route('products.store')}}" method="post" class="">
+                <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data" class="">
                     @csrf
                     <div class="form-row">
                         <div class="col-4 form-group">
@@ -78,7 +78,7 @@
                         <div class=" col form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">Order Limit</div>
-                                <input type="number" name="order_limit" value="{{ old('product_price')}}"  class="form-control @error('order_limit') is-invalid @enderror">
+                                <input type="number" name="order_limit" value="{{ old('order_limit')}}"  class="form-control @error('order_limit') is-invalid @enderror">
                                 <div class="input-group-addon">
                                     <i class="fas fa-briefcase"></i>
                                 </div>
@@ -92,12 +92,12 @@
                         {{-- <span class="text-center text-info small"></span> --}}
                         <div class="input-group">
                             <div class="input-group-addon">Keywords</div>
-                            <input type="text" name="Keywords" value="{{ old('Keywords')}}"  class="form-control @error('Keywords') is-invalid @enderror" placeholder="Please use ,(Comma) as keywords separator">
+                            <input type="text" name="keywords" value="{{ old('keywords')}}"  class="form-control @error('keywords') is-invalid @enderror" placeholder="Please use ,(Comma) as keywords separator">
                             <div class="input-group-addon">
                                 <i class="fa fa-key"></i>
                             </div>
                         </div>
-                        @error('Keywords')
+                        @error('keywords')
                             <span class="text-danger">{{$message}}</span>
                         @enderror
                     </div>
@@ -116,13 +116,13 @@
                     </div>
 
                     <div class="form-group">
-                        <fieldset class="the-fieldset rounded">
+                        <fieldset class="the-fieldset rounded ">
                             <legend class="the-legend badge badge-secondary px-2 text-uppercase">Mandatory Images</legend>
                             <div class="d-flex">
                                 <div class="col-12 col-md-4">
                                     <label>Front</label>
                                     <div class="custom-file mb-3 ">
-                                        <input type="file" class="custom-file-input @error('frontimage') is-invalid @enderror" id="customFile" name="frontimage">
+                                        <input type="file" value="{{old('frontimage')}}" class="custom-file-input @error('frontimage') is-invalid @enderror" id="customFile" name="frontimage">
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                     @error('frontimage')
