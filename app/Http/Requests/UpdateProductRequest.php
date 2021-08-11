@@ -31,9 +31,9 @@ class UpdateProductRequest extends FormRequest
             'product_price_before_discount' => 'required|integer|min: 1|gte:product_price',
             'product_price' => 'required|integer|min:1|lte:product_price_before_discount',
             'order_limit' => 'required|integer|max:10|min:1',
-            'frontimage' => 'required|mimes:jpg,png|max:2048',
-            'backimage' => 'required|mimes:jpg,png|max:2048',
-            'thumbnail' => 'required|mimes:jpg,png|max:70',
+            'frontimage' => 'mimes:jpg,png|max:2048',
+            'backimage' => 'mimes:jpg,png|max:2048',
+            'thumbnail' => 'mimes:jpg,png|max:70',
             'optional_image_1' => 'sometimes|mimes:jpg,png|max:2048',
             'optional_image_2' => 'sometimes|mimes:jpg,png|max:2048',
             'optional_image_3' => 'sometimes|mimes:jpg,png|max:2048',
@@ -58,12 +58,12 @@ class UpdateProductRequest extends FormRequest
     public function attributes(){
         return
         [
-        'backimage'=> 'Back of Product',
-        'frontimage'=> 'Front of Product',
-        'thumbnail'=> 'Display Image',
-        'optional_image_1'=>'First Optional Image',
-        'optional_image_2'=>'Second Optional Image',
-        'optional_image_3'=>'Third Optional Image',
+            'backimage'=> 'Back of Product',
+            'frontimage'=> 'Front of Product',
+            'thumbnail'=> 'Display Image',
+            'optional_image_1'=>'First Optional Image',
+            'optional_image_2'=>'Second Optional Image',
+            'optional_image_3'=>'Third Optional Image',
         ];
     }
 }
