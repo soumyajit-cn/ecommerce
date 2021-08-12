@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
 
     public function index(){
-        $products = Product::with('categories')->latest()->paginate(5);
+        $products = Product::with('categories')->with('gallery')->latest()->paginate(5);
         //dd(json_decode(json_encode($products)));
         return view('admin.product.list', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -56,6 +56,17 @@ class ProductController extends Controller
         $product->in_stock= 0;
         $product->created_at= date('Y-m-d H:i:s');
         $product->updated_at= date('Y-m-d H:i:s');
+        $array=[];
+        if(!empty($request->attribute)){
+            foreach(json_decode(json_encode($request->attribute)) as $attrval){
+                $array[$attrval->key]=$attrval->value;
+            }
+            $product->attribute=  $array;
+        }
+        foreach(json_decode(json_encode($request->attribute)) as $attrval){
+            $array[$attrval->key]=$attrval->value;
+        }
+        $product->attribute=  $array;
 
         if($request->file()) {
             $front = time().'_'.$request->frontimage->getClientOriginalName();
@@ -125,6 +136,7 @@ class ProductController extends Controller
     {
         $categories= Category::select('id','category_name')->get();
         $product= Product::with('categories')->find($id);
+        //dd(json_decode(json_encode($product)));
         return view('admin.product.edit',compact('categories','product'));
     }
 
@@ -146,7 +158,15 @@ class ProductController extends Controller
         $product->product_price= $request->product_price;
         $product->order_limit= $request->order_limit;
         $product->in_stock= 0;
-        $product->created_at= date('Y-m-d H:i:s');
+        $array=[];
+        foreach(json_decode(json_encode($request->attribute)) as $attrval){
+            if(!empty($attrval->key)){
+                $array[$attrval->key]=array_unique(array_filter($attrval->value));
+            }
+        }
+        //dd($array);
+        $product->attribute=  $array;
+        //$product->created_at= date('Y-m-d H:i:s');
         $product->updated_at= date('Y-m-d H:i:s');
 
         if($request->file()) {
@@ -169,8 +189,8 @@ class ProductController extends Controller
                 $optional_image_3_Path = $request->file('optional_image_3')->storeAs('uploads', $optional_image_3, 'public');
             }
             if( $filePath1 && $filePath2 && $filePath3){
-                $product->save();
-                $gallery= new Gallery;
+                $product->update();
+                $gallery= Gallery::where('product_id','=',$product->id)->find();
                 $gallery->product_id= $product->id;
                 $gallery->color= 'test';
                 $gallery->frontimage= $front;
@@ -181,16 +201,18 @@ class ProductController extends Controller
                 $gallery->optional_image_3= !empty($optional_image_3) ? $optional_image_3 : '';
                 $gallery->created_at= date('Y-m-d H:i:s');
                 $gallery->updated_at= date('Y-m-d H:i:s');
-                $gallery->save();
+                $gallery->update();
                 //$product->save();
             }
+        }else{
+            $product->update();
         }
-        if($gallery->save() && $product->save()){
-            $catproduct= new CategoryProduct;
-            $catproduct->category_id= $request->category;
-            $catproduct->product_id= $product->id;
-            $catproduct->save();
-        }
+        // if($gallery->save() && $product->save()){
+        //     $catproduct= new CategoryProduct;
+        //     $catproduct->category_id= $request->category;
+        //     $catproduct->product_id= $product->id;
+        //     $catproduct->save();
+        // }
         return redirect()->route('products.index')
             ->with('success', 'Product added successfully');
     }

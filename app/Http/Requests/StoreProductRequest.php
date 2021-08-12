@@ -37,6 +37,7 @@ class StoreProductRequest extends FormRequest
             'optional_image_1' => 'sometimes|mimes:jpg,png|max:2048',
             'optional_image_2' => 'sometimes|mimes:jpg,png|max:2048',
             'optional_image_3' => 'sometimes|mimes:jpg,png|max:2048',
+            // 'attribute' => 'sometimes|array|min:1',
         ];
     }
     public function messages(){

@@ -194,6 +194,10 @@
                             <a href="{{route('products.index')}}">
                                 <i class="fas fa-chart-bar"></i>Product Management </a>
                         </li>
+                        <li>
+                            <a href="{{route('attributes.index')}}">
+                                <i class="fas fa-chart-bar"></i>Attribute Management </a>
+                        </li>
                         {{-- <li>
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
@@ -486,6 +490,7 @@
 
     <!-- Main JS-->
     <script src="{{ asset('admin/js/main.js') }}"></script>
+    <script src="{{ asset('admin/js/append.js') }}"></script>
 
 </body>
 

@@ -1,6 +1,57 @@
 @extends('admin.layouts.main')
 @section('content')
 <div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">Add Attribute for <span class="block-email text-danger font-weight-bold">{{$products->product_name}}</span><span class="pull-right"><button class="btn btn-sm btn-info"><i class="fas fa-plus mr-3"></i>Add Attribute</button></span></div>
+            <div class="card-body card-block">
+                <form action="{{route('attributes.store',$products->id)}}" method="post" enctype="multipart/form-data" class="">
+                    @csrf
+                    @method('PUT')
+                    <div class="d-flex">
+                        <div id="attributecontainer" class ="col-md-9 col-12">
+                            <div class="form-group">
+                                <fieldset class="the-fieldset rounded ">
+                                    <legend class="the-legend badge badge-secondary px-2 text-uppercase">Attribute</legend>
+                                        <div class="col-12 col-md-6 form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Name</div>
+                                                <input type="text" name="attribute[1][key]" class="form-control @error('product_name') is-invalid @enderror">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-list-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-12 form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Value</div>
+                                                <input type="text" name="attribute[1][value][]" class="form-control">
+                                                <button type="button" class="valueplus input-group-addon btn" data-id="1"><i class="fas fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-12 my-auto" align="center">
+                            <button id="addattrbiute" class=" btn btn-sm btn-info" data-id="1" type="button" ><i class="fas fa-plus mr-3"></i>Add Attribute</button>
+                        </div>
+                    </div>
+                    <div class="form-actions form-group">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                    @error('attribute')
+                        <span class="text-danger">{{$message}}</span>
+                    @enderror
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+{{-- @extends('admin.layouts.main') --}}
+@section('content1')
+<div class="row">
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-header">Credit Card</div>

@@ -23,7 +23,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function rules()    {
         return [
-            'category'=> 'required|integer|exists:categories,id',
+            //'category'=> 'required|integer|exists:categories,id',
             'product_name' => 'required|max:255',
             'product_company' => 'required|max:255',
             'keywords' => 'required|string',
@@ -41,8 +41,8 @@ class UpdateProductRequest extends FormRequest
     }
     public function messages(){
         return [
-            'category.required' => 'Please Select a Category',
-            'category.exists' => 'Category Does not exist',
+            // 'category.required' => 'Please Select a Category',
+            // 'category.exists' => 'Category Does not exist',
             'product_name.required' => 'Please enter a Product Name',
             'keywords.required' => 'Please enter some Keywords for searching recommendation',
             'product_description.required' => 'Please Give Some Description',

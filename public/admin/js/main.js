@@ -16,6 +16,14 @@
     }catch{
         console.log(error);
     }
+    try{
+        $(document).find('.custom-file-input').on('change',function(){ //get name of operator photo
+            var fileName = $(this).val().replace('C:\\fakepath\\', " ");//replace the path and select only file name
+            $(this).next('.custom-file-label').html(fileName);
+        });
+    }catch{
+        console.log(error);
+    }
 
     try{
         $("input[type='number']").keypress(function (e) { //disable alphabetic input on number field

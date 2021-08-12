@@ -10,24 +10,7 @@
                         @csrf
                         @method('PUT')
                         <div class="form-row">
-                            <div class="col-4 form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon">Category</div>
-                                    <select name="category" id="select" class="form-control @error('category') is-invalid @enderror" >
-                                        <option value="">Select Category</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{$category->id}}" {{ old('category') == $category->id ? 'selected' : '' }}>{{$category->category_name}}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-list-alt"></i>
-                                    </div>
-                                </div>
-                                @error('category')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class=" col-4 form-group">
+                            <div class=" col-6 form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">Name</div>
                                     <input type="text" name="product_name" value="{{$product->product_name}}" class="form-control @error('product_name') is-invalid @enderror">
@@ -39,7 +22,7 @@
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
-                            <div class=" col-4 form-group">
+                            <div class=" col-6 form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon">Company</div>
                                     <input type="text" name="product_company" value="{{$product->product_company}}" class="form-control @error('product_company') is-invalid @enderror">
@@ -192,6 +175,63 @@
 
                                 </div>
                             </fieldset>
+                        </div>
+                        <div class="d-flex">
+                            <div id="attributecontainer" class ="col-md-9 col-12">
+                                @if (!empty($product->attribute))
+                                    @foreach ( $product->attribute as $attributekey=>$attributeval )
+                                        <div class="form-group">
+                                            <fieldset class="the-fieldset rounded ">
+                                                <legend class="the-legend badge badge-secondary px-2 text-uppercase">{{$attributekey}}</legend>
+                                                <div class="col-12 col-md-6 form-group">
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon">Name</div>
+                                                        <input type="text" name="attribute[1][key]" value="{{$attributekey}}" class="form-control">
+                                                        <div class="input-group-addon">
+                                                            <i class="fas fa-list-alt"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @foreach ($attributeval as $atval )
+                                                    <div class="col-12 col-md-12 form-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">Value</div>
+                                                            <input type="text" name="attribute[1][value][]" value="{{$atval}}" class="form-control">
+                                                            <button type="button" class="valueplus input-group-addon btn" data-id="1"><i class="fas fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </fieldset>
+                                        </div>
+                                    @endforeach
+                                @else
+                                <div class="form-group">
+                                    <fieldset class="the-fieldset rounded ">
+                                        <legend class="the-legend badge badge-secondary px-2 text-uppercase">Attribute</legend>
+                                        <div class="col-12 col-md-6 form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">Name</div>
+                                                <input type="text" name="attribute[1][key]" value="" class="form-control">
+                                                <div class="input-group-addon">
+                                                    <i class="fas fa-list-alt"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                            <div class="col-12 col-md-12 form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Value</div>
+                                                    <input type="text" name="attribute[1][value][]" class="form-control">
+                                                    <button type="button" class="valueplus input-group-addon btn" data-id="1"><i class="fas fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                    </fieldset>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="col-md-3 col-12 my-auto" align="center">
+                                <button id="addattrbiute" class=" btn btn-sm btn-info" data-id="1" type="button" ><i class="fas fa-plus mr-3"></i>Add Attribute</button>
+                            </div>
                         </div>
 
 
