@@ -22,7 +22,3 @@ Route::get('/', function () {
 Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::resource('products', ProductController::class)->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
-Route::get('attributes', [AttributeController::class,'index'])->name('attributes.index')->middleware('auth');
-Route::get('attributes/edit/{id}', [AttributeController::class,'edit'])->name('attributes.edit')->middleware('auth');
-Route::get('attributes/add/{id}', [AttributeController::class,'add'])->name('attributes.add')->middleware('auth');
-Route::put('attributes/store/{id}', [AttributeController::class,'store'])->name('attributes.store')->middleware('auth');
