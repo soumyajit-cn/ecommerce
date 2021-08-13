@@ -179,6 +179,7 @@
                         <div class="d-flex">
                             <div id="attributecontainer" class ="col-md-9 col-12">
                                 @if (!empty($product->attribute))
+                                    @php $i = 1 @endphp
                                     @foreach ( $product->attribute as $attributekey=>$attributeval )
                                         <div class="form-group">
                                             <fieldset class="the-fieldset rounded ">
@@ -186,7 +187,7 @@
                                                 <div class="col-12 col-md-6 form-group">
                                                     <div class="input-group">
                                                         <div class="input-group-addon">Name</div>
-                                                        <input type="text" name="attribute[1][key]" value="{{$attributekey}}" class="form-control">
+                                                        <input type="text" name="attribute[{{$i}}][key]" value="{{$attributekey}}" class="form-control">
                                                         <div class="input-group-addon">
                                                             <i class="fas fa-list-alt"></i>
                                                         </div>
@@ -196,13 +197,14 @@
                                                     <div class="col-12 col-md-12 form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon">Value</div>
-                                                            <input type="text" name="attribute[1][value][]" value="{{$atval}}" class="form-control">
-                                                            <button type="button" class="valueplus input-group-addon btn" data-id="1"><i class="fas fa-plus"></i></button>
+                                                            <input type="text" name="attribute[{{$i}}][value][]" value="{{$atval}}" class="form-control">
+                                                            <button type="button" class="valueplus input-group-addon btn" data-id="{{$i}}"><i class="fas fa-plus"></i></button>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                             </fieldset>
                                         </div>
+                                        @php $i++ @endphp
                                     @endforeach
                                 @else
                                 <div class="form-group">
@@ -230,7 +232,7 @@
                                 @endif
                             </div>
                             <div class="col-md-3 col-12 my-auto" align="center">
-                                <button id="addattrbiute" class=" btn btn-sm btn-info" data-id="1" type="button" ><i class="fas fa-plus mr-3"></i>Add Attribute</button>
+                                <button id="addattrbiute" class=" btn btn-sm btn-info" data-id="{{!empty($product->attribute) ? count($product->attribute) : 1}}" type="button" ><i class="fas fa-plus mr-3"></i>Add Attribute</button>
                             </div>
                         </div>
 

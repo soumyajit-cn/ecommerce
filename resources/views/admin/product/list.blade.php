@@ -43,7 +43,13 @@
                             </ul>
                         </td>
                         <td>
-                            <span class="status--process"></span>
+                            @if(!empty($product->attribute) && array_key_exists('color',$product->attribute))
+                                <ul class="list-unstyled">
+                                    @foreach ($product->attribute['color'] as $color)
+                                        <li class="text-capitalize">{{$color}},</li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         </td>
                         <td></td>
                         <td></td>
