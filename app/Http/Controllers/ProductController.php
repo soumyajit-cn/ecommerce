@@ -207,12 +207,7 @@ class ProductController extends Controller
         }else{
             $product->update();
         }
-        // if($gallery->save() && $product->save()){
-        //     $catproduct= new CategoryProduct;
-        //     $catproduct->category_id= $request->category;
-        //     $catproduct->product_id= $product->id;
-        //     $catproduct->save();
-        // }
+
         return redirect()->route('products.index')
             ->with('success', 'Product added successfully');
     }

@@ -3,7 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +22,4 @@ Route::get('/', function () {
 Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 Route::resource('products', ProductController::class)->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
+Route::get('users', [UserController::class,'index'])->name('users')->middleware('auth');
