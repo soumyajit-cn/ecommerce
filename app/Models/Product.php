@@ -21,4 +21,8 @@ class Product extends Model
     public function gallery(){
         return $this->hasOne(Gallery::class);
     }
+
+    public function stock(){
+        return $this->hasOne(Stock::class,'productid');
+    }
 }

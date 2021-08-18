@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Daily Shop | Home</title>
 
     <!-- Font awesome -->
@@ -42,6 +43,7 @@
 
   </head>
   <body>
+      <input type="hidden" id="base_url" value="<?=URL::to('/')?>">
    <!-- wpf loader Two -->
     <div id="wpf-loader-two">
       <div class="wpf-loader-two-inner">
@@ -103,6 +105,7 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
+                  <li><a href="">Gallery</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
                   <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
@@ -392,6 +395,7 @@
   <script type="text/javascript" src="{{ asset('user/js/nouislider.js') }}"></script>
   <!-- Custom js -->
   <script src="{{ asset('user/js/custom.js') }}"></script>
+  <script src="{{ asset('user/js/main.js') }}"></script>
 
   </body>
 </html>

@@ -23,3 +23,4 @@ Route::get("/dashboard", [DashboardController::class, 'index'])->name('dashboard
 Route::resource('products', ProductController::class)->middleware('auth');
 Route::resource('categories', CategoryController::class)->middleware('auth');
 Route::get('users', [UserController::class,'index'])->name('users')->middleware('auth');
+Route::post('/getproduct', [DashboardController::class,'getproduct'])->name('getproduct')->middleware('auth');
