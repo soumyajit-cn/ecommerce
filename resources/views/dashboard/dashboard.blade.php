@@ -717,11 +717,11 @@
                                                 <li>
                                                     <figure>
                                                         <a class="aa-product-img" href="#"><img src="{{ asset('storage/uploads/'.$product->gallery->thumbnail) }}" alt="polo shirt img"></a>
-                                                        @if ($product->in_stock== 1)
-                                                            <a class="aa-add-card-btn" href="javascript:void(0)" data-id="{{$product->id}}" data-limit="{{$product->order_limit}}">
+                                                        {{-- @if ($product->in_stock== 1)
+                                                            <a class="aa-add-card-btn" href="javascript:void(0)" data-id="{{$product->id}}" data-limit="{{$product->order_limit}}" data-quantity="1">
                                                                 <span class="fa fa-shopping-cart"></span>Add To Cart
                                                             </a>
-                                                        @endif
+                                                        @endif --}}
                                                         <figcaption>
                                                             <h4 class="aa-product-title"><a href="#">Polo T-Shirt</a></h4>
                                                             <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
@@ -730,7 +730,7 @@
                                                     <div class="aa-product-hvr-content">
                                                         <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
                                                         <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                                                        <a class="quickviewproduct" href="javascript:void(0)" data-toggle2="tooltip" data-productid="{{$product->id}}" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>
+                                                        <a class="quickviewproduct" href="javascript:void(0)" data-toggle2="tooltip" data-productid="{{$product->id}}" data-placement="top" title="Quick View"><span class="fa fa-search"></span></a>
                                                     </div>
                                                     <!-- product badge -->
                                                     <span class="aa-badge {{$product->in_stock== 0 ? 'aa-sold-out' : 'aa-sale'}}" href="#">{{$product->in_stock== 0 ? 'OUT OF STOCK' : 'SALE!'}}</span>

@@ -1,5 +1,5 @@
-@extends('layouts.main')
-@section('content')
+@extends('user.layouts.main')
+@section('usercontent')
 <!-- catg header banner section -->
   <section id="aa-catg-head-banner">
    <img src="{{ asset('user/img/fashion/fashion-header-bg-8.jpg') }}" alt="fashion img">
