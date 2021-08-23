@@ -19,7 +19,7 @@ $.ajaxSetup({
             dataType: 'JSON',
             //cache: false,
             success: function(response){
-                $.alert({
+                swal({
                     'title': 'success',
                     'content': response.message
                 })
@@ -92,9 +92,23 @@ $.ajaxSetup({
         quantityselect.closest('.aa-add-to-cart-btn').attr('data-quantity', quantity);
     })
 
+    var sum=0;
+    $(document).find('#ordersummary tr').each(function(){
 
-
-
+        $(this).find('.price').each(function () {
+            var combat = $(this).text().replace(/,|₹|/g, '');
+            //console.log(combat);
+            if (!isNaN(combat) && combat.length !== 0) {
+                sum += parseFloat(combat);
+            }
+        });
+        //console.log(sum);
+        $(this).find('td.subtotal').html(sum.toLocaleString('en'));
+        //console.log($(this).find('td.subtotal').text());
+        var total = sum + $(this).find('#ordersummary td.tax').text().replace(/,|₹|/g, '');
+        //console.log(total);
+        $(this).find('td.total').html(total.toLocaleString('en'));
+    })
 // $('body').on('click', '.aa-add-card-btn', function() {
 //     //var $button = $(this);
 //     var order_limit = $(this).data('limit');

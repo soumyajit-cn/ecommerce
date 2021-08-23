@@ -12,4 +12,10 @@ class Cart extends Model
     protected $casts = [
         'attribute' => 'array',
     ];
+    public function products(){
+        return $this->hasOne(Product::class,'id','product_id');
+    }
+    public function gallery(){
+        return $this->hasOne(Gallery::class,'product_id','product_id');
+    }
 }

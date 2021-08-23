@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttributeRequest extends FormRequest
+class StoreOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,4 +21,10 @@ class StoreAttributeRequest extends FormRequest
      *
      * @return array
      */
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
 }

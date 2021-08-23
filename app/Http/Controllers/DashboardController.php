@@ -14,12 +14,14 @@ class DashboardController extends Controller
     {
         $categories= [];
         $products= [];
+        $carts= [];
         if(Auth::user()->type ==='User'){
             $categories = Category::with('children','parent')->get();
             $products= Product::with('gallery','stock')->get();
-            //dd($products);
+            $carts= Cart::with('products','gallery')->where([['status','=','1'],['user_id','=',Auth::user()->id]])->get();
+            //dd(json_decode(json_encode($carts)));
         }
-        return view('dashboard.dashboard', compact( 'categories','products'));
+        return view('dashboard.dashboard', compact( 'categories','products','carts'));
     }
 
     public function getproduct(Request $request){
@@ -42,10 +44,15 @@ class DashboardController extends Controller
         $cart->created_at= date('Y-m-d H:i:s');
         $cart->updated_at= date('Y-m-d H:i:s');
         $cart->save();
-        //$data= unserialize($request->post('data'));
         return response()->json(array('message'=>'Added to Cart'),200);
     }
     public function productdetail(){
         return view ('user.product.detail');
+    }
+
+    public function checkout($id){
+
+        $carts= Cart::with('products','gallery')->where([['status','=','1'],['user_id','=',$id]])->get();
+        return view ('user.product.checkout',compact('carts'));
     }
 }

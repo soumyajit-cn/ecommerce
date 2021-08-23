@@ -12,4 +12,8 @@ class Gallery extends Model
     public function product(){
         return $this->hasOne(Product::class);
     }
+
+    public function cart(){
+        return $this->hasOne(Cart::class,'product_id');
+    }
 }

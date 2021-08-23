@@ -26,3 +26,4 @@ Route::get('users', [UserController::class,'index'])->name('users')->middleware(
 Route::post('/getproduct', [DashboardController::class,'getproduct'])->name('getproduct')->middleware('auth');
 Route::post('/addtocart', [DashboardController::class,'addtocart'])->name('addtocart')->middleware('auth');
 Route::get('/productdetail', [DashboardController::class,'productdetail'])->name('productdetail')->middleware('auth');
+Route::get('/checkout/{id}', [DashboardController::class,'checkout'])->name('checkout')->middleware('auth');
