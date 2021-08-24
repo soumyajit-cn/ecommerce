@@ -297,7 +297,7 @@
                     </div>
                     <h4>Payment Method</h4>
                     <div class="aa-payment-method">
-                        <label for="cashdelivery"><input type="radio" id="cashdelivery" checked name="optionsRadios"> Cash on Delivery </label>
+                        <label for="cashdelivery"><input type="radio" id="cashdelivery" checked name="optionsRadios" value="COD"> Cash on Delivery </label>
                         {{-- <label for="paypal"><input type="radio" id="paypal" name="optionsRadios" checked> Via Paypal </label>
                         <img style="margin-top: 0px" src="https://www.paypalobjects.com/webstatic/mktg/logo/AM_mc_vs_dc_ae.jpg" border="0" alt="PayPal Acceptance Mark"> --}}
                         <input type="submit" value="Place Order" class="aa-browse-btn">

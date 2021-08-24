@@ -7,6 +7,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Daily Shop | Home</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
     <!-- Font awesome -->
     <link href="{{ asset('user/css/font-awesome.css') }}" rel="stylesheet">
     <!-- Bootstrap -->
@@ -105,10 +108,10 @@
               <div class="aa-header-top-right">
                 <ul class="aa-head-top-nav-right">
                   <li><a href="account.html">My Account</a></li>
-                  <li><a href="">Gallery</a></li>
+                  <li><a href="{{route('gallery')}}">Gallery</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                   <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
-                  <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
+                  <li class="hidden-xs"><a href="{{route('checkout',Auth::user()->id)}}">Checkout</a></li>
                   @if (route('logout'))
                     <li><a href="{{ route('logout') }}"onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">Logout</a>
@@ -149,9 +152,9 @@
                 <a class="aa-cart-link" href="#">
                   <span class="fa fa-shopping-basket"></span>
                   <span class="aa-cart-title">SHOPPING CART</span>
-                  <span class="aa-cart-notify">{{count($carts)}}</span>
+                  <span class="aa-cart-notify">{{!empty($carts) ? count($carts) : 0}}</span>
                 </a>
-                @if (count($carts)!= 0)
+                @if (!empty($carts) && count($carts)!= 0)
                     <div class="aa-cartbox-summary">
                         <ul>
                             @foreach ($carts as $cart)

@@ -23,6 +23,9 @@ class DashboardController extends Controller
         }
         return view('dashboard.dashboard', compact( 'categories','products','carts'));
     }
+    public function gallery(){
+        return view('user.product.gallery');
+    }
 
     public function getproduct(Request $request){
         //dd($request->post());

@@ -137,7 +137,7 @@ class ProductController extends Controller
         $categories= Category::select('id','category_name')->get();
         $product= Product::with('categories')->find($id);
         //dd(json_decode(json_encode($product)));
-        return view('admin.product.edit',compact('categories','product'));
+        return view('admin.product.edit', compact('categories','product'));
     }
 
     /**
