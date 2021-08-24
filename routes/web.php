@@ -28,3 +28,4 @@ Route::post('/addtocart', [DashboardController::class,'addtocart'])->name('addto
 Route::get('/productdetail', [DashboardController::class,'productdetail'])->name('productdetail')->middleware('auth');
 Route::get('/checkout/{id}', [DashboardController::class,'checkout'])->name('checkout')->middleware('auth');
 Route::get('/gallery', [DashboardController::class,'gallery'])->name('gallery')->middleware('auth');
+Route::post('placeorder', [DashboardController::class,'placeorder'])->name('placeorder')->middleware('auth');

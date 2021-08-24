@@ -110,7 +110,7 @@
                   <li><a href="account.html">My Account</a></li>
                   <li><a href="{{route('gallery')}}">Gallery</a></li>
                   <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                  <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                  {{-- <li class="hidden-xs"><a href="cart.html">My Cart</a></li> --}}
                   <li class="hidden-xs"><a href="{{route('checkout',Auth::user()->id)}}">Checkout</a></li>
                   @if (route('logout'))
                     <li><a href="{{ route('logout') }}"onclick="event.preventDefault();

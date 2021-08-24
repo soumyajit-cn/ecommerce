@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrderRequest;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -25,6 +27,12 @@ class DashboardController extends Controller
     }
     public function gallery(){
         return view('user.product.gallery');
+    }
+
+    public function placeorder(StoreOrderRequest $request){
+        //dd($request->post());
+        $validated= $request->validated();
+        $order= new Order;
     }
 
     public function getproduct(Request $request){
