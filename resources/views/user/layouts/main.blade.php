@@ -392,6 +392,7 @@
   <!-- Custom js -->
   <script src="{{ asset('user/js/custom.js') }}"></script>
   <script src="{{ asset('user/js/main.js') }}"></script>
+  <script src="{{ asset('user/js/photo-gallery.js') }}"></script>
 
   </body>
 </html>
