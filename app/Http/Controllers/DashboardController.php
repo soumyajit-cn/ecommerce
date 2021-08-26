@@ -48,6 +48,20 @@ class DashboardController extends Controller
         $order->timestamps= date('Y-m-d H:i:s');
         $address->timestamps= date('Y-m-d H:i:s');
         if($address->save()){
+        //     \Stripe\Stripe::setApiKey('use-your-stripe-key-here');
+
+		// $amount = 100;
+		// $amount *= 100;
+        // $amount = (int) $amount;
+
+        // $payment_intent = \Stripe\PaymentIntent::create([
+		// 	'description' => 'Stripe Test Payment',
+		// 	'amount' => $amount,
+		// 	'currency' => 'INR',
+		// 	'description' => 'Payment From Codehunger',
+		// 	'payment_method_types' => ['card'],
+		// ]);
+		// $intent = $payment_intent->client_secret;
             $order->address_id=$address->id;
             $order->order_status=1;
             if($order->save()){
