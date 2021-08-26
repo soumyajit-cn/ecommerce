@@ -7,6 +7,7 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Category;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Address;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +34,33 @@ class DashboardController extends Controller
         //dd($request->post());
         $validated= $request->validated();
         $order= new Order;
+        $address= new Address;
+        $order->order_id= uniqid("OD".bin2hex(rand(5,100)));
+        $order->user_id= Auth::user()->id;
+        $order->cart_id= $request->cart;
+        $address->userid= Auth::user()->id;
+        $address->shipping_address= $request->address;
+        $address->shipping_state= $request->state;
+        $address->shipping_city= $request->district;
+        $address->shipping_pincode= $request->pincode;
+        $order->payment_method= $request->payment_method;
+        $order->order_date= date('Y-m-d H:i:s');
+        $order->timestamps= date('Y-m-d H:i:s');
+        $address->timestamps= date('Y-m-d H:i:s');
+        if($address->save()){
+            $order->address_id=$address->id;
+            $order->order_status=1;
+            if($order->save()){
+                foreach($request->cart as $cart_id){
+                    $cart = Cart::find($cart_id);
+                    $cart->status= 0;
+                    $cart->update();
+                }
+                return redirect()->route('dashboard')->with('success', 'Order placed successfully');
+            }
+        }
+        return redirect()->back()->with('error', 'Order Can not be placed');
+
     }
 
     public function getproduct(Request $request){

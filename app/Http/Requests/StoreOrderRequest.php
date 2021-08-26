@@ -32,7 +32,7 @@ class StoreOrderRequest extends FormRequest
             'state'=> 'required|string|min:4',
             'district'=> 'required|string|min:4',
             'pincode'=> 'required|numeric|gte:100000|lte:999999',
-            'payment_method'=> 'required|in:COD',
+            'payment_method'=> 'required|in:COD,EMI,Prepaid',
             //'address.*.name'=> 'required|string|min:5'
         ];
     }

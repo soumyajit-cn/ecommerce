@@ -544,6 +544,9 @@
             <!-- END MAIN CONTENT-->
 @endsection
 @section('usercontent')
+@if (Session::has('success'))
+    <div class= "alert alert-block alert-success">{{Session::get('success')}} </div>
+@endif
     <!-- Start slider -->
     <section id="aa-slider">
         <div class="aa-slider-area">

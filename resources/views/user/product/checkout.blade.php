@@ -165,7 +165,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="aa-checkout-single-bill">
-                                                                    <input type="text" name="address[name]" placeholder="Customer Name">
+                                                                    <input type="text" name="address[name]" value="{{old('address.name')}}" placeholder="Customer Name">
                                                                 </div>
                                                                 @error('address.name')<code class="text-danger"> {{$message}}</code>@enderror
                                                             </div>
@@ -186,7 +186,7 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="aa-checkout-single-bill">
-                                                                    <textarea cols="8" rows="3" placeholder="Address*" name="address[address_line_1]"></textarea>
+                                                                    <textarea cols="8" rows="3" placeholder="Address*" name="address[address_line_1]">{{old('address.address_line_1')}}</textarea>
                                                                 </div>
                                                                 @error('address.address_line_1')<code class="text-danger"> {{$message}}</code>@enderror
                                                             </div>
@@ -246,7 +246,7 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="aa-checkout-single-bill">
-                                                                    <input type="number" name="pincode" placeholder="Postcode / ZIP*">
+                                                                    <input type="number" name="pincode" value="{{old('pincode')}}" placeholder="Postcode / ZIP*">
                                                                 </div>
                                                                 @error('pincode')<code class="text-danger"> {{$message}}</code>@enderror
                                                             </div>
