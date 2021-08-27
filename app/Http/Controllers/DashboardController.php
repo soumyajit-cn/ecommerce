@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Address;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Cashier\Cashier;
+use \Stripe\Stripe;
 
 class DashboardController extends Controller
 {
@@ -22,7 +24,6 @@ class DashboardController extends Controller
             $categories = Category::with('children','parent')->get();
             $products= Product::with('gallery','stock')->get();
             $carts= Cart::with('products','gallery')->where([['status','=','1'],['user_id','=',Auth::user()->id]])->get();
-            //dd(json_decode(json_encode($carts)));
         }
         return view('dashboard.dashboard', compact( 'categories','products','carts'));
     }
